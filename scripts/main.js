@@ -1,5 +1,6 @@
 var submitButton=document.getElementById('submit-button');
 var resetButton=document.getElementById('reset-button');
+var showLeadButton=document.getElementById('show-leads-button');
 var nome=document.getElementById('input-nome');
 var database=firebase.database();
 
@@ -42,5 +43,58 @@ resetButton.onclick = function(){
     database.ref('meta/').set({
         qtd: 0
     });  
+
+}
+
+showLeadButton.onclick = function(){
+
+    
+
+    return firebase.database().ref('/meta/').once('value').then(function(snapshot) {
+        
+        var quant = snapshot.val().qtd;
+
+        if (quant ==0){
+            return;
+        }
+
+        showLeadButton.hidden = true;
+
+        return firebase.database().ref('/leads/').once('value').then(function(snapshot) {
+        
+            var i=1;
+            var leads=snapshot.val()[i];
+            var csv=""
+
+            for (i=1;i<=quant;i++){
+
+                leads=snapshot.val()[i];
+        
+                var paragrafo = document.createElement("P");
+                var atrib = document.createAttribute("id");
+                atrib.value="p"+i;
+                paragrafo.setAttributeNode(atrib);
+                var text = document.createTextNode(leads.email + ',' + leads.nome + ',' + leads.ip + ',' + leads.tipo + ',' + leads.hora);
+                csv=csv+leads.email + ',' + leads.nome + ',' + leads.ip + ',' + leads.tipo + ',' + leads.hora + "\n";
+
+
+                paragrafo.appendChild(text);
+                document.body.appendChild(paragrafo);
+            }
+            
+            //console.log(csv);
+
+            var downloadLink = document.createElement("a");
+            var blob = new Blob(["\ufeff", csv]);
+            var url = URL.createObjectURL(blob);
+            downloadLink.href = url;
+            downloadLink.download = "LeadsExport.csv";  //Name the file here
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+            document.body.removeChild(downloadLink);
+
+        });
+
+    });
 
 }
