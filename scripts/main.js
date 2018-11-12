@@ -55,6 +55,7 @@ showLeadButton.onclick = function(){
         var quant = snapshot.val().qtd;
 
         if (quant ==0){
+            alert('DB vazia!')
             return;
         }
 
