@@ -75,8 +75,8 @@ showLeadButton.onclick = function(){
                 var atrib = document.createAttribute("id");
                 atrib.value="p"+i;
                 paragrafo.setAttributeNode(atrib);
-                var text = document.createTextNode(leads.email + ',' + leads.nome + ',' + leads.ip + ',' + leads.tipo + ',' + leads.hora);
-                csv=csv+leads.email + ',' + leads.nome + ',' + leads.ip + ',' + leads.tipo + ',' + leads.hora + "\n";
+                var text = document.createTextNode(leads.email + ',' + leads.nome + ',' + leads.ip + ',' + leads.tipo + ',' + leads.hora + ',' + leads.interesse);
+                csv=csv+leads.email + ',' + leads.nome + ',' + leads.ip + ',' + leads.tipo + ',' + leads.hora + ',' + leads.interesse + "\n";
 
 
                 paragrafo.appendChild(text);
