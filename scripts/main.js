@@ -65,7 +65,7 @@ showLeadButton.onclick = function(){
         
             var i=1;
             var leads=snapshot.val()[i];
-            var csv=""
+            var csv="email,nome,ip,tipo,hora,interesse\n"
 
             for (i=1;i<=quant;i++){
 
