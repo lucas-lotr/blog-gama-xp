@@ -37,14 +37,18 @@ submitButton.onclick = function(){
 
 resetButton.onclick = function(){
 
-    database.ref('leads/').set({
+    // database.ref('leads/').set({
         
-    });  
-    database.ref('meta/').set({
-        qtd: 0
-    });  
+    // });  
+    // database.ref('meta/').set({
+    //     qtd: 0
+    // });  
+
+    alert('função desabilitada');
 
 }
+
+
 
 showLeadButton.onclick = function(){
 
