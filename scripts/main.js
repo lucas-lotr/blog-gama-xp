@@ -23,14 +23,16 @@ function writeData(id,data){
 }
 
 submitButton.onclick = function(){
-    console.log(nome.value);
+    // console.log(nome.value);
 
-    return firebase.database().ref('/meta/').once('value').then(function(snapshot) {
-        console.log(snapshot.val().qtd);
+    // return firebase.database().ref('/meta/').once('value').then(function(snapshot) {
+    //     console.log(snapshot.val().qtd);
 
-        writeData(Number(snapshot.val().qtd),nome.value);
+    //     writeData(Number(snapshot.val().qtd),nome.value);
 
-      });
+    //   });
+
+    alert('função desabilitada')
 
     
 }
@@ -48,6 +50,24 @@ resetButton.onclick = function(){
 
 }
 
+
+function resetDB() {
+
+    var pwd = prompt('certeza jovem? digite a senha:');
+
+    if (pwd=='resetaaijovem'){
+
+        database.ref('leads/').set({
+        
+        });  
+        database.ref('meta/').set({
+            qtd: 0
+        });  
+
+
+    }
+
+}
 
 
 showLeadButton.onclick = function(){
