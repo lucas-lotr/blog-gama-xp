@@ -22,6 +22,17 @@ function writeData(id,data){
 
 }
 
+function getTamanho(){
+
+    return firebase.database().ref('/meta/').once('value').then(function(snapshot) {
+        
+        let quant = snapshot.val().qtd;
+        document.getElementById('tamanho').textContent=quant;
+
+    });
+
+}
+
 submitButton.onclick = function(){
     // console.log(nome.value);
 
